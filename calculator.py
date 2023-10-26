@@ -99,14 +99,20 @@ b.place(x=80, y=300)
 def equal():
     n2 = e.get()
     e.delete(0, END)
-    if math == "addition":
-        e.insert(0, i + int(n2))
-    elif math == "subtraction":
-        e.insert(0, i - int(n2))
-    elif math == "multiplication":
-        e.insert(0, i * int(n2))
-    else :
-        e.insert(0, i / int(n2))
+    try:
+        if math == "addition":
+            e.insert(0, i + int(n2))
+        elif math == "subtraction":
+            e.insert(0, i - int(n2))
+        elif math == "multiplication":
+            e.insert(0, i * int(n2))
+        elif math == "division":
+            if n2 == "0":
+                e.insert(0, "Error: Division by Zero")
+            else:
+                e.insert(0, i / int(n2))
+    except ZeroDivisionError:
+        e.insert(0, "Error: Division by Zero")
 
 
 b = Button(window, text='=', width=12, command=equal)
